@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: aqua;
+}
+
+.container {
+    max-width: 400px;
+    margin: 100px auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+    text-align: left;
+}
+
+input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+span a {
+    display: flex;
+    flex-direction: row;
+    padding: 8px 12px;
+    font-size: 12px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+span a:hover {
+    text-decoration: underline;
+}
+
+button{
+    padding: 10px;
+    margin:8px 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#signup{
+    background-color: #007bff;
+    color: #fff;
+}
+
+#home{
+    background-color:#6C757D;
+    color:white;    
+}
+
+#signup:hover,#home:hover {
+    background-color: #17A085;
+}
+
+</style>
+<div class="container">
+    <h1>Login</h1>
+    {% if error %}
+        <p style="color:red">{{error}}</p>
+    {% endif %}
+    <form action="" method='POST' id='form'>
+        {% csrf_token %}
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" placeholder="example@gmail.com"/>
+
+        <label for="pass">Password:</label>
+        <input type="password" name="pass" id="pass" placeholder="Password">
+
+        <span>
+            <a href="{% url "Forgot_password" %}">Forgot Password?</a>
+        </span>
+
+        <button type='submit' id='signup'>Login</button>
+
+        <button type="button" onclick="location.href='{% url 'Home' %}'" id="home">Go Home</button>
+    </form>
+</div>
+{% endblock  %}

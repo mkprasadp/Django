@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+
+{% block  content%}
+<style>
+    /* Reset some default browser styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: aqua;
+}
+
+.container {
+    max-width: 400px;
+    margin: 100px auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px gray;
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+    text-align: left;
+}
+
+input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+input[type="email"]:focus, input[type="password"]:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+
+span a {
+    display: flex;
+    flex-direction: row;
+    padding: 8px 12px;
+    font-size: 12px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+span a:hover {
+    color:red;
+    text-decoration: underline;
+}
+
+button{
+    padding: 10px;
+    margin:8px 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#signup{
+    background-color: #007bff;
+    color: #fff;
+}
+
+#Home{
+    background-color:#6C757D;
+    color:white;    
+}
+
+#signup:hover,#Home:hover {
+    background-color: #17A085;
+}
+</style>
+<div class="container">
+    <h1>Signup</h1>
+    {% if error %}
+        <p style="color:red">{{error}}</p>
+    {% endif %}
+
+    {% if errors %}
+        <p style="color:red">{{errors}}</p>
+    {% endif %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="User Name" required/>
+
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" placeholder="example@gmail.com" required/>
+
+        <label for="pass">Password:</label>
+        <input type="password" name="pass" id="pass" placeholder="Password" required/>
+
+        <label for="DOB">DOB:</label>
+        <input type="date" name="DOB" id="DOB" required/>
+
+        <span>
+            <a href="{% url "Loginpage" %}">Go To Loginpage</a>
+        </span>
+        
+        <button type='submit' id='signup'>Sign Up</button>
+
+        <button onclick="location.href={% url "Home" %}" type='button' id='Home'>Go Home</button>
+    </form>
+</div>
+{% endblock  %}
